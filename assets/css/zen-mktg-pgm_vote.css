@@ -352,12 +352,12 @@
   width: 100%;
   margin: 32px auto 0;
   background: linear-gradient(135deg, var(--vote-orange) 0%, var(--vote-orange) 100%);
-  color: var(--vote-white);
+  color: var(--vote-black);
   border: none;
   border-radius: 8px;
   padding: 16px 28px;
   font-family: var(--vote-font-base);
-  font-weight: 900;
+  font-weight: 700;
   font-size: 1.8rem;
   letter-spacing: 0.1em;
   cursor: pointer;
