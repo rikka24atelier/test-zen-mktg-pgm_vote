@@ -1,0 +1,492 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+@font-face {
+  font-family: 'DIN2014';
+  src: local('DIN 2014'), local('DIN2014');
+  font-weight: 400 900;
+}
+
+:root {
+  --vote-orange:        #ffbd59;
+  --vote-orange-light:  #fff9e1;
+  --vote-black:         #1A1A1A;
+  --vote-white:         #FFFFFF;
+  --vote-border:        #DDDDDD;
+  --vote-text-main:     #222222;
+  --vote-font-base:     'Noto Sans JP', 'Yu Gothic Medium', YuGothic, sans-serif;
+  --vote-font-num:      'DIN2014', 'Noto Sans JP', sans-serif;
+  --vote-radius-card:   12px;
+  --vote-transition:    0.25s ease;
+}
+
+#zen-vote-page {
+  font-family: var(--vote-font-base);
+  color: var(--vote-text-main);
+  line-height: 1.7;
+  background: var(--vote-white);
+}
+
+
+/* ①KV */
+#zen-vote-page .zvp-hero {
+  width: 100%;
+  line-height: 0;
+  display: block;
+}
+#zen-vote-page .zvp-hero__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ②イントロ（bg-about.jpeg 背景） */
+#zen-vote-page .zvp-intro {
+  position: relative;
+  background-color: var(--vote-orange-light);
+  background-image: url('../img/zen-mktg-pgm_vote/bg-about.jpeg');
+  background-repeat: repeat;
+  background-size: 1200px auto;
+  padding: 36px 20px 64px;
+}
+#zen-vote-page .zvp-intro__inner {
+  max-width: 1000px;
+  margin: 12px auto;
+}
+#zen-vote-page .zvp-intro__banner {
+  background: var(--vote-orange);
+  text-align: center;
+  padding: 14px 2em;
+  border-radius: 0;
+  margin-bottom: 24px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+#zen-vote-page .zvp-intro__banner p {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--vote-white);
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+#zen-vote-page .zvp-intro__body {
+  font-size: 1.4rem;
+  line-height: 2;
+  color: var(--vote-text-main);
+  text-align: center;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  #zen-vote-page .zvp-intro__banner p { font-size: 1.6rem; }
+}
+
+
+/* ③企画カード */
+#zen-vote-page .zvp-plans {
+  position: relative;
+  background: linear-gradient(180deg, var(--vote-orange) 0%, var(--vote-orange) 100%);
+  padding: 80px 20px 0px;
+  clip-path: polygon(0 40px, 30% 60px, 70% 0%, 100% 30px, 100% 100%, 0 100%);
+  margin-top: -60px;
+}
+
+#zen-vote-page .zvp-plans__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* カードwrap（バッジ+カード） */
+#zen-vote-page .zvp-plan-card-wrap {
+  position: relative;
+  padding-top: 22px; /* バッジ分の余白 */
+}
+
+/* バッジ（カード上部中央に浮く） */
+#zen-vote-page .zvp-plan-card__badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--vote-font-num);
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--vote-white);
+  padding: 5px 18px;
+  border-radius: 20px;
+  z-index: 2;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  border: 2px solid #1A1A1A;
+  letter-spacing: 0.05em;
+}
+#zen-vote-page .zvp-plan-card__badge span {
+  font-size: 1.7rem;
+  margin-left: 2px;
+}
+#zen-vote-page .zvp-plan-card__badge--01 { background: #E53935; }
+#zen-vote-page .zvp-plan-card__badge--02 { background: #43A047; }
+#zen-vote-page .zvp-plan-card__badge--03 { background: #1E88E5; }
+
+/* カード本体 */
+#zen-vote-page .zvp-plan-card {
+  background: var(--vote-white);
+  border-radius: var(--vote-radius-card);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--vote-transition), box-shadow var(--vote-transition);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  border: 2px solid #1A1A1A;
+  display: flex;
+  flex-direction: column;
+}
+#zen-vote-page .zvp-plan-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.28);
+}
+#zen-vote-page .zvp-plan-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--vote-white), 0 14px 32px rgba(0,0,0,0.28);
+}
+#zen-vote-page .zvp-plan-card:focus:not(:focus-visible) { outline: none; }
+
+/* カードヘッダー（クリックで拡大テキスト行） */
+#zen-vote-page .zvp-plan-card__header {
+  text-align: center;
+  padding: 20px 10px 10px;
+  background: transparent;
+}
+#zen-vote-page .zvp-plan-card__hint {
+  font-size: 1.1rem;
+  color: #1A1A1A;
+}
+
+/* カード画像エリア */
+#zen-vote-page .zvp-plan-card__img-wrap {
+  flex: 1;
+  aspect-ratio: 3 / 4;
+  background: #d0d0d0;
+  overflow: hidden;
+  margin: 0 24px 24px;
+}
+#zen-vote-page .zvp-plan-card__img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+#zen-vote-page .zvp-plan-card:hover .zvp-plan-card__img-wrap img {
+  transform: scale(1.04);
+}
+
+/* CTA吹き出し */
+#zen-vote-page .zvp-plans__cta {
+  text-align: center;
+  margin-top: 32px;
+  padding-bottom: 32px;
+}
+#zen-vote-page .zvp-plans__cta__balloon {
+  display: inline-block;
+  position: relative;
+  background: var(--vote-white);
+  color: var(--vote-text-main);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.5;
+  padding: 12px 32px;
+  border-radius: 30px;
+  border: 2px solid #1A1A1A;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+  letter-spacing: 0.02em;
+  max-width: 640px;
+  width: 90%;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+/* テキストの位置 */
+#zen-vote-page .zvp-plans__cta__balloon p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+/* 吹き出し三角（外枠・黒） */
+#zen-vote-page .zvp-plans__cta__balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 14px solid transparent;
+  border-top-color: #1A1A1A;
+}
+/* 吹き出し三角（内側・白） */
+#zen-vote-page .zvp-plans__cta__balloon::before {
+  content: '';
+  position: absolute;
+  bottom: -21px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 11px solid transparent;
+  border-top-color: var(--vote-white);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  #zen-vote-page .zvp-plans__grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+
+/* ⑤投票フォーム（bg-about.jpeg 背景） */
+#zen-vote-page .zvp-form-section {
+  position: relative;
+  background-color: var(--vote-orange-light);
+  background-repeat: repeat;
+  background-size: auto;
+  padding: 52px 20px 60px;
+}
+
+#zen-vote-page .zvp-form-box {
+  background: var(--vote-white);
+  border: 2px solid var(--vote-black);
+  border-radius: 16px;
+  padding: 36px 36px 40px;
+  max-width: 560px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* フォームタイトル（黒ピル・ボックス上部中央） */
+#zen-vote-page .zvp-form-title {
+  display: block;
+  width: fit-content;
+  margin: -62px auto 32px;
+  background: var(--vote-black);
+  color: var(--vote-white);
+  font-weight: 900;
+  font-size: 1.8rem;
+  padding: 10px 32px;
+  border-radius: 30px;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+/* 各フィールド行 */
+#zen-vote-page .zvp-form-field {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+/* 番号バッジ */
+#zen-vote-page .zvp-field-num {
+  font-family: var(--vote-font-num);
+  font-weight: 900;
+  font-size: 1.3rem;
+  width: 32px; height: 32px;
+  background: var(--vote-orange);
+  border-radius: 50%;
+  border: 1.5px solid #1A1A1A;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--vote-white);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+#zen-vote-page .zvp-field-body { flex: 1; }
+
+#zen-vote-page .zvp-field-label {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+/* セレクト・テキストエリア */
+#zen-vote-page .zvp-field-select,
+#zen-vote-page .zvp-field-textarea {
+  width: 100%;
+  border: 1px solid var(--vote-border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 1.4rem;
+  font-family: var(--vote-font-base);
+  color: var(--vote-text-main);
+  background: var(--vote-white);
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  transition: border-color var(--vote-transition), box-shadow var(--vote-transition);
+}
+#zen-vote-page .zvp-field-select:focus,
+#zen-vote-page .zvp-field-textarea:focus {
+  border-color: var(--vote-orange);
+  box-shadow: 0 0 0 3px rgba(245,166,35,0.18);
+}
+
+#zen-vote-page .zvp-select-wrap { position: relative; }
+#zen-vote-page .zvp-select-wrap::after {
+  content: '▾';
+  position: absolute;
+  right: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  pointer-events: none;
+  font-size: 1.4rem;
+}
+
+#zen-vote-page .zvp-field-textarea {
+  resize: vertical;
+  min-height: 90px;
+  margin-top: 0;
+}
+
+/* 投票するボタン（長方形） */
+#zen-vote-page .zvp-submit-btn {
+  display: block;
+  width: 100%;
+  margin: 32px auto 0;
+  background: linear-gradient(135deg, var(--vote-orange) 0%, var(--vote-orange) 100%);
+  color: var(--vote-white);
+  border: none;
+  border-radius: 8px;
+  padding: 16px 28px;
+  font-family: var(--vote-font-base);
+  font-weight: 900;
+  font-size: 1.8rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: transform var(--vote-transition), box-shadow var(--vote-transition);
+  box-shadow: 0 4px 14px rgba(245,166,35,0.45);
+  text-align: center;
+}
+#zen-vote-page .zvp-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(245,166,35,0.55);
+}
+#zen-vote-page .zvp-submit-btn:active { transform: translateY(0); }
+
+@media (max-width: 768px) {
+  #zen-vote-page .zvp-form-box { padding: 36px 18px 32px; }
+  #zen-vote-page .zvp-form-title { font-size: 1.6rem; }
+  #zen-vote-page .zvp-field-label { font-size: 1.4rem; }
+}
+
+
+/* ⑥アウトロメッセージ（白背景・センター） */
+.zvp-outro {
+  background: var(--vote-orange-light);
+  text-align: center;
+  padding: 36px 20px 48px;
+}
+.zvp-outro p {
+  font-size: 1.4rem;
+  color: var(--vote-text-main);
+  line-height: 2.4;
+  margin: 0;
+}
+
+
+/* 【UI】カードの全画面拡大表示 */
+#zvp-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+#zvp-modal-overlay.zvp-modal--open {
+  display: flex;
+  opacity: 1;
+}
+#zvp-modal-inner {
+  position: relative;
+  max-width: min(90vw, 600px);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#zvp-modal-img {
+  max-width: 100%; max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  display: block;
+}
+#zvp-modal-label {
+  color: var(--vote-white);
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  opacity: 0.85;
+}
+#zvp-modal-close {
+  position: absolute;
+  top: -14px; right: -14px;
+  width: 40px; height: 40px;
+  background: var(--vote-white);
+  border: none; border-radius: 50%;
+  font-size: 1.8rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--vote-black);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  transition: background var(--vote-transition), color var(--vote-transition);
+  z-index: 1;
+}
+#zvp-modal-close:hover { background: var(--vote-orange); color: var(--vote-white); }
+#zvp-modal-back-btn {
+  margin-top: 18px;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.6);
+  color: var(--vote-white);
+  border-radius: 30px;
+  padding: 9px 28px;
+  font-weight: 700; font-size: 1.4rem; cursor: pointer;
+  transition: background var(--vote-transition);
+}
+#zvp-modal-back-btn:hover { background: rgba(255,255,255,0.15); }
+@media (max-width: 768px) {
+  #zvp-modal-close { top: -10px; right: -6px; width: 34px; height: 34px; font-size: 1.6rem; }
+  #zvp-modal-img { max-height: 70vh; }
+}
+
+
+/* 【UI】投票後のポップアップ（トースト） */
+#zvp-toast {
+  position: fixed;
+  bottom: 32px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--vote-black);
+  color: var(--vote-white);
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-weight: 700; font-size: 1.4rem;
+  z-index: 10000;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease;
+}
+#zvp-toast.zvp-toast--show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+
+/* 【UI】サンクスメッセージ */
+#zen-vote-page .zvp-thanks { text-align: center; padding: 20px 10px 10px; }
+#zen-vote-page .zvp-thanks__icon { font-size: 4rem; margin-bottom: 16px; }
+#zen-vote-page .zvp-thanks__title {
+  font-size: 2rem; font-weight: 900;
+  color: var(--vote-black);
+  margin-bottom: 16px;}
